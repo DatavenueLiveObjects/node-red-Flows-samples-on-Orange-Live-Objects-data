@@ -20,12 +20,12 @@ See https://nodered.org/docs/ to discover how to use editor and build treatments
 
 Below are described some non-exhaustive ways to interact with a Node-RED treatment, and especially from or to Live Objects, with some sample you can import:
 
-[arabic]
-. *Getting data from a Live Objects MQTT topic (application mode)*, to base Node-RED treatment on data coming from Live Objects (through MQTT)
-. *Sending data to a Live Objects MQTT topic (device mode)*, to send data transformed by Node-RED to Live Objects (through MQTT)
-. *Calling by HTTP a Node-RED treatment, at custom pipeline level (complete sample 1)*
-. *Complete sample 2 : data from 2 bike stations*
-. *Complete sample 3 : event processing based on data from 2 devices*
+
+- *Getting data from a Live Objects MQTT topic (application mode)*, to base Node-RED treatment on data coming from Live Objects (through MQTT)
+- *Sending data to a Live Objects MQTT topic (device mode)*, to send data transformed by Node-RED to Live Objects (through MQTT)
+- *Calling by HTTP a Node-RED treatment, at custom pipeline level (complete sample 1)*
+- *Complete sample 2 : data from 2 bike stations*
+- *Complete sample 3 : event processing based on data from 2 devices*
 
 Note that in this SaaS implementation, Node-RED context is stored in database, to be persistent even in the case of a start/stop of the platform. Therefore, you have to use asynchronous mode (https://nodered.org/docs/user-guide/writing-functions#asynchronous-context-access) to access this context (here we used "change" nodes).
 
