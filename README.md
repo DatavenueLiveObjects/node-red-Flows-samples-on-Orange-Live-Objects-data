@@ -14,7 +14,7 @@ To be able to use Node-RED features, ask your vendor for the access. Then you wi
 
 Using this account and password, you can login on the Node-RED SaaS page (editor url in mail):
 
-image:images/image1.png[image,width=367,height=222]
+<img src="images/image1.png" width="367" height="222">
 
 See https://nodered.org/docs/ to discover how to use editor and build treatments (called "flows" in Node-RED vocabulary).
 
@@ -33,19 +33,19 @@ Note that in this SaaS implementation, Node-RED context is stored in database, t
 
 In Node-RED editor, use an mqtt out node, and position it on an existing Live Objects FIFO:
 
-image:images/image2.png[image,width=471,height=325]
+<img src="images/image2.png" width="471" height="325">
 
 MQTT address and port are to be set:
 
-image:images/image3.png[image,width=459,height=313]
+<img src="images/image3.png" width="459" height="313">
 
 With your API-KEY, in "Application" profile in Live Objects:
 
-image:images/image4.png[image,width=421,height=213]
+<img src="images/image4.png" width="421" height="213">
 
 When saved, your node should appear connected :
 
-image:images/image5.png[image,width=144,height=56]
+<img src="images/image5.png" width="144" height="56">
 
 You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own API-KEY API-KEY in Password field of Node-RED screen above):
 
@@ -57,17 +57,17 @@ You can start to create your Flow by importing (Ctrl-I) the following source (no
 
 In Node-RED editor, use an mqtt out node, and position it on an existing Live Objects FIFO:
 
-image:images/image6.png[image,width=604,height=201]
+<img src="images/image6.png" width="604" height="201">
 
 Edit the different property (connection and security) of your MQTT topic, giving the device ID which will appear in Live Objects (here urn:lo:nsid:mqttnodered:my_device):
 
-image:images/image7.png[image,width=445,height=344]
+<img src="images/image7.png" width="445" height="344">
 
-image:images/image8.png[image,width=456,height=235]
+<img src="images/image8.png" width="456" height="235">
 
 When saved, your node should appear connected :
 
-image:images/image9.png[image,width=206,height=62]
+<img src="images/image9.png" width="206" height="62">
 
 You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own device API-KEY in Password field of Node-RED screen above):
 
@@ -83,15 +83,14 @@ You first need to create in Live Objects, the custom pipeline, specifying the co
 
 Since this can be done by other method, you can use Node-RED to create it (one shot call).
 
-image:images/image10.png[image,width=604,height=88]
+<img src="images/image10.png" width="604" height="88">
 
 Initialization of the custom pipeline is described in the JSON of the "inject" node.
 
 The HTTP call of the Node-RED treatment will require an authentication. The basic key is issued from the base-64 coding of the chain <your_login>:<your_password> (for instance using https://www.base64encode.org/).
 
-image:images/image11.png[image,width=526,height=415]
-
-
+<img src="images/image11.png" width="526" height="415">
+  
 For instance:
 
 ```
@@ -119,11 +118,11 @@ Note that this URL may differs in your case. Use the one received in the welcome
 
 Preparation of the call of Live Objects API to create the pipeline is done in "function" node:
 
-image:images/image12.png[image,width=451,height=323]
+<img src="images/image12.png" width="451" height="323">
 
 And then, you can call the API with "http request" node:
 
-image:images/image13.png[image,width=453,height=451]
+<img src="images/image13.png" width="453" height="451">
 
 *Treatment to be called by custom pipeline*
 
@@ -131,15 +130,15 @@ You can then define a flow that will be called when Live Objects receives messag
 
 In the example below, we use the treatment called by custom pipeline to add in the stream of data that will be stored by Live Objects, external temperature value, get from an Internet API.
 
-image:images/image14.png[image,width=604,height=137]
+<img src="images/image14.png" width="604" height="137">
 
 To fit with the definition of the custom pipeline done above, you first have to use a "http in" node, and name it accordingly (here "transform").
 
-image:images/image15.png[image,width=360,height=219]
+<img src="images/image15.png" width="360" height="219">
 
 Then you can add the temperature value (here converted from Kelvin to Degree) in the payload that will be returned to Live Objects by the "http response" node:
 
-image:images/image16.png[image,width=394,height=351]
+<img src="images/image16.png" width="394" height="351">
 
 You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own API-KEYs):
 
@@ -153,7 +152,7 @@ Note that this URL may differs in your case. Use the one received in the welcome
 
 This sample get every 30 minutes information from 2 bike stations in Paris (velib), and push them, as message from devices, to Live Objects:
 
-image:images/image17.png[image,width=604,height=388]
+<img src="images/image17.png" width="604" height="388">
 
 You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own API-KEY):
 
@@ -173,7 +172,7 @@ Especially with these features, Node-RED is complementary to what is provided di
 
 (*): Note that Node-RED context is stored in database, to be persistent even in the case of a start/stop of the platform. Therefore, you have to use asynchronous mode (https://nodered.org/docs/user-guide/writing-functions#asynchronous-context-access) to access this context (here we used "change" nodes).
 
-image:images/image18.png[image,width=604,height=256]
+<img src="images/image18.png" width="604" height="256">
 
 You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own API-KEY):
 
