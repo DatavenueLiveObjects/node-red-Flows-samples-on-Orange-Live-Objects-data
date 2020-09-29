@@ -18,7 +18,7 @@ Using this account and password, you can login on the Node-RED SaaS page (editor
 
 See https://nodered.org/docs/ to discover how to use editor and build treatments (called "flows" in Node-RED vocabulary).
 
-Below are described some non-exhaustive ways to interact with a Node-RED treatment, and especially from or to Live Objects, with some sample you can import:
+Below are described some non-exhaustive ways to interact with a Node-RED treatment, and especially from or to Live Objects, with some samples you can import:
 
 
 - *Getting data from a Live Objects MQTT topic (application mode)*, to base Node-RED treatment on data coming from Live Objects (through MQTT)
@@ -79,9 +79,13 @@ You can start to create your Flow by importing (Ctrl-I) the following source (no
 
 *Creation of the custom pipeline*
 
+The custom pipeline mechanism of Live Objects is detailled in Live Objects documentation https://liveobjects.orange-business.com/doc/html/lo_manual_v2.html#PIPELINES). 
+
 You first need to create in Live Objects, the custom pipeline, specifying the condition and (Node-RED treatment) URL you will call in this custom pipeline.
 
-Since this can be done by other method, you can use Node-RED to create it (one shot call).
+<img src="images/Image100.png" width="604" >
+
+The creation of the custom pipeline can be done by Live Objects portal, like above, but also by API : you can use Node-RED to create it (one shot call).
 
 <img src="images/image10.png" width="604" height="88">
 
