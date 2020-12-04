@@ -18,7 +18,7 @@ Using this account, you can login on the Node-RED SaaS page:
 
 When opening the editor, you will find 3 treatments (called **flows** in Node-RED vocabulary) samples in the "Default samples" tab:
 
-<img src="images/image1bis.png" width="367">
+<img src="images/image1 bis.png" width="367">
 
 You can either follow this documentation, or the commentted flows to do your first steps using Node-RED in link with Live Objects:
 - *Getting data from a Live Objects MQTT topic (application mode)*, to base Node-RED treatment on data coming from Live Objects (through MQTT)
