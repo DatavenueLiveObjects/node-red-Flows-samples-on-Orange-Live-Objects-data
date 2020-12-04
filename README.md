@@ -96,10 +96,10 @@ The custom pipeline mechanism of Live Objects is detailled in Live Objects docum
 The creation of the custom pipeline can be done by Live Objects portal:
 - Click on "Add" in "Data"/"Custom pipelines" menu
 - Add an "External transformation" and :
- - Set URL with **(your Node-RED API URL that you received by mail)/transform**
- - Set "HTTP Header key" to "Authorization"
- - Encode in base-64 **(your login):(your password)** (for instance using https://www.base64encode.org/).
- - Set "HTTP Header value" with **Basic (the encoding value)**
+  - Set URL with **(your Node-RED API URL that you received by mail)/transform**
+  - Set "HTTP Header key" to "Authorization"
+  - Encode in base-64 **(your login):(your password)** (for instance using https://www.base64encode.org/).
+  - Set "HTTP Header value" with **Basic (the encoding value)**
 
 <img src="images/Image100.png" width="604" >
 
