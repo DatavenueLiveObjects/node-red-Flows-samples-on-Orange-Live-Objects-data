@@ -79,11 +79,13 @@ You can start to create your Flow by importing (Ctrl-I) the following source (no
 
 ## Sample 1: pushing to Live Objects data collected from a bike station
 
-This sample get every 30 minutes information from 1 bike station in Paris (velib), and push them, as message from devices, to Live Objects:
+This flow gets every 30 minutes information from 1 bike station in Paris (velib), and push them, as messages from a device, to Live Objects:
 
 <img src="images/image17.png" width="700">
 
 Put your API KEY in "mqtt out" node as explained above in order to run this sample.
+
+See below for the source code of the 3 samples.
 
 ## Sample 2: enriching data, using Live Objects custom pipeline feature
 
@@ -94,10 +96,10 @@ The custom pipeline mechanism of Live Objects is detailled in Live Objects docum
 The creation of the custom pipeline can be done by Live Objects portal:
 - Click on "Add" in "Data"/"Custom pipelines" menu
 - Add an "External transformation" and :
- - Set URL with **<your Node-RED API URL that you received by mail>/transform**
+ - Set URL with **(your Node-RED API URL that you received by mail)/transform**
  - Set "HTTP Header key" to "Authorization"
- - Encode in base-64 **<your login>:<your password>** (for instance using https://www.base64encode.org/).
- - Set "HTTP Header value" with **Basic <the encoding value>**
+ - Encode in base-64 **(your login):(your password)** (for instance using https://www.base64encode.org/).
+ - Set "HTTP Header value" with **Basic (the encoding value)**
 
 <img src="images/Image100.png" width="604" >
 
