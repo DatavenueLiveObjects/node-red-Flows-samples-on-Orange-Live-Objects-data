@@ -33,7 +33,7 @@ Note that in this SaaS implementation, Node-RED context is stored in database, t
 
 ## Getting data from a Live Objects MQTT topic (application mode)
 
-In Node-RED editor, use an mqtt out node, and position it on an existing Live Objects FIFO:
+In Node-RED editor, use an "mqtt out" node, and position it on an existing Live Objects FIFO:
 
 <img src="images/image2.png" width="500">
 
@@ -41,7 +41,7 @@ MQTT address and port are to be set:
 
 <img src="images/image3.png" width="400">
 
-With your API-KEY, in "Application" profile in Live Objects:
+With your API-KEY, of "Application" profile in Live Objects:
 
 <img src="images/image4.png" width="400">
 
@@ -49,7 +49,7 @@ When saved, your node should appear connected :
 
 <img src="images/image5.png" width="144" height="56">
 
-You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own API-KEY API-KEY in Password field of Node-RED screen above):
+You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own API-KEY in "Password" field of Node-RED screen above):
 
 ```
 [{"id":"2ac0690f.f3f8f6","type":"mqtt in","z":"d1ebc1de.552d58","name":"","topic":"fifo/myFIFO","qos":"2","datatype":"auto","broker":"fee6051f.6515","x":110,"y":120,"wires":[[]]},{"id":"fee6051f.6515","type":"mqtt-broker","z":"","name":"Live Objects Application","broker":"liveobjects.orange-business.com","port":"1883","tls":"5b95170f.22b128","clientid":"myapp_id","usetls":false,"compatmode":true,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"5b95170f.22b128","type":"tls-config","z":"","name":"","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"","servername":"","verifyservercert":false}]
@@ -77,7 +77,15 @@ You can start to create your Flow by importing (Ctrl-I) the following source (no
 [{"id":"d6ad7974.b19d5","type":"tab","label":"Flow 2","disabled":false,"info":""},{"id":"ddfc4322.32aec","type":"mqtt out","z":"d6ad7974.b19d5","name":"publish to dev/data","topic":"dev/data","qos":"0","retain":"","broker":"fee6051f.6515","x":170,"y":140,"wires":[]},{"id":"fee6051f.6515","type":"mqtt-broker","z":"","name":"Live Objects Device","broker":"liveobjects.orange-business.com","port":"1883","tls":"5b95170f.22b128","clientid":"urn:lo:nsid:mqttnodered:my_device","usetls":false,"compatmode":true,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"5b95170f.22b128","type":"tls-config","z":"","name":"","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"","servername":"","verifyservercert":false}]
 ```
 
-## Calling by HTTP a Node-RED treatment, at custom pipeline level
+## Sample 1: pushing to Live Objects data collected from a bike station
+
+This sample get every 30 minutes information from 1 bike station in Paris (velib), and push them, as message from devices, to Live Objects:
+
+<img src="images/image17.png" width="600">
+
+Put your API KEY in "mqtt out" node as explained above in order to run this sample.
+
+## Sample 2: enriching data, using Live Objects custom pipeline feature
 
 *Creation of the custom pipeline*
 
@@ -154,20 +162,8 @@ You can start to create your Flow by importing (Ctrl-I) the following source (no
 
 Note that this URL may differs in your case. Use the one received in the welcome mail.
 
-## Complete sample 2: data from 2 bike stations
 
-This sample get every 30 minutes information from 2 bike stations in Paris (velib), and push them, as message from devices, to Live Objects:
-
-<img src="images/image17.png" width="604" height="388">
-
-You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own API-KEY):
-
-```
-[{"id":"e27fb494.cbb5d8","type":"tab","label":"[c] Velib stations","disabled":false,"info":""},{"id":"80424dd0.46ee4","type":"http request","z":"e27fb494.cbb5d8","name":"GET pernety velib station last status","method":"GET","ret":"obj","paytoqs":false,"url":"https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&q=pernety&rows=1","tls":"","persist":false,"proxy":"","authType":"","x":310,"y":120,"wires":[["80b868e7.1c43c8"]]},{"id":"17f1d44c.aeeee4","type":"inject","z":"e27fb494.cbb5d8","name":"Send Data Message trigger","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"*/30 0-23 * * *","once":true,"onceDelay":"1","x":200,"y":60,"wires":[["80424dd0.46ee4"]]},{"id":"80b868e7.1c43c8","type":"template","z":"e27fb494.cbb5d8","name":"convert to Data Message","field":"payload","fieldType":"msg","format":"handlebars","syntax":"mustache","template":"{\n   \"ts\":  \"{{payload.records.0.record_timestamp}}\",\n   \"m\":   \"velibDispo1\",\n   \"loc\": [{{payload.records.0.geometry.coordinates.1}}, {{payload.records.0.geometry.coordinates.0}}],\n   \"v\": {\n      \"ebike\": {{payload.records.0.fields.ebike}},\n      \"capacity\": {{payload.records.0.fields.capacity}},\n      \"name\": \"{{payload.records.0.fields.name}}\",\n      \"nom_arrondissement_communes\": \"{{payload.records.0.fields.nom_arrondissement_communes}}\",\n      \"numbikesavailable\": {{payload.records.0.fields.numbikesavailable}},\n      \"mechanical\": {{payload.records.0.fields.mechanical}}\n   },\n   \"t\" : [ \"velib-disponibilite-en-temps-reel\"]\n}","output":"json","x":330,"y":180,"wires":[["451c1d6d.8d4854"]]},{"id":"451c1d6d.8d4854","type":"mqtt out","z":"e27fb494.cbb5d8","name":"publish to dev/data","topic":"dev/data","qos":"0","retain":"","broker":"8d30a774.31859","x":550,"y":180,"wires":[]},{"id":"1c0fc18.77cb93f","type":"mqtt out","z":"e27fb494.cbb5d8","name":"publish to dev/data","topic":"dev/data","qos":"0","retain":"","broker":"aeb99171.4817d","x":550,"y":360,"wires":[]},{"id":"142570d0.f59fc7","type":"template","z":"e27fb494.cbb5d8","name":"convert to Data Message","field":"payload","fieldType":"msg","format":"handlebars","syntax":"mustache","template":"{\n   \"ts\":  \"{{payload.records.0.record_timestamp}}\",\n   \"m\":   \"velibDispo1\",\n   \"loc\": [{{payload.records.0.geometry.coordinates.1}}, {{payload.records.0.geometry.coordinates.0}}],\n   \"v\": {\n      \"ebike\": {{payload.records.0.fields.ebike}},\n      \"capacity\": {{payload.records.0.fields.capacity}},\n      \"name\": \"{{payload.records.0.fields.name}}\",\n      \"nom_arrondissement_communes\": \"{{payload.records.0.fields.nom_arrondissement_communes}}\",\n      \"numbikesavailable\": {{payload.records.0.fields.numbikesavailable}},\n      \"mechanical\": {{payload.records.0.fields.mechanical}}\n   },\n   \"t\" : [ \"velib-disponibilite-en-temps-reel\"]\n}","output":"json","x":330,"y":360,"wires":[["1c0fc18.77cb93f"]]},{"id":"ef97f6f.6003c88","type":"http request","z":"e27fb494.cbb5d8","name":"GET marne velib station last status","method":"GET","ret":"obj","paytoqs":false,"url":"https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&q=\"Marne - Charles de Gaulle\"&rows=1","tls":"53f20f00.72b838","persist":false,"proxy":"","authType":"","x":300,"y":300,"wires":[["142570d0.f59fc7"]]},{"id":"a2878a87.b8fa88","type":"inject","z":"e27fb494.cbb5d8","name":"Send Data Message trigger","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"*/30 0-23 * * *","once":true,"onceDelay":"1","x":200,"y":240,"wires":[["ef97f6f.6003c88"]]},{"id":"9e1c4.30cf3e3d","type":"comment","z":"e27fb494.cbb5d8","name":"Push to Live Objects data from 2 velib stations, seen as 2 MQTT devices","info":"","x":320,"y":20,"wires":[]},{"id":"8d30a774.31859","type":"mqtt-broker","z":"","name":"Live Objects pernety","broker":"liveobjects.orange-business.com","port":"8883","tls":"e7258cda.0b59a8","clientid":"urn:lo:nsid:mqttnodered:pernety","usetls":true,"compatmode":false,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"aeb99171.4817d","type":"mqtt-broker","z":"","name":"Live Objects alfortville","broker":"liveobjects.orange-business.com","port":"8883","tls":"81c1449a.3fbf38","clientid":"urn:lo:nsid:mqttnodered:alfortville","usetls":true,"compatmode":false,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"53f20f00.72b838","type":"tls-config","z":"","name":"TLS-config-basic-no-checkings","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"","servername":"","verifyservercert":false},{"id":"e7258cda.0b59a8","type":"tls-config","z":"","name":"","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"","servername":"","verifyservercert":false},{"id":"81c1449a.3fbf38","type":"tls-config","z":"","name":"tls-config-verifyServerCertif","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"DigiCertRootCaCertif.pem","servername":"","verifyservercert":true}]
-```
-
-
-## Complete sample 3: event processing based on data from 2 devices
+## Sample 3: event processing on data coming from Live Objects
 
 This sample retrieves data from Live Objects (North bound interface), to execute an event processing treatment:
 
