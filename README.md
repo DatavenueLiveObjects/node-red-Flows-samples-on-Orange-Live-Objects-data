@@ -81,7 +81,7 @@ You can start to create your Flow by importing (Ctrl-I) the following source (no
 
 This sample get every 30 minutes information from 1 bike station in Paris (velib), and push them, as message from devices, to Live Objects:
 
-<img src="images/image17.png" width="600">
+<img src="images/image17.png" width="700">
 
 Put your API KEY in "mqtt out" node as explained above in order to run this sample.
 
@@ -91,46 +91,19 @@ Put your API KEY in "mqtt out" node as explained above in order to run this samp
 
 The custom pipeline mechanism of Live Objects is detailled in Live Objects documentation https://liveobjects.orange-business.com/doc/html/lo_manual_v2.html#PIPELINES). 
 
-You first need to create in Live Objects, the custom pipeline, specifying the condition and (Node-RED treatment) URL you will call in this custom pipeline.
+The creation of the custom pipeline can be done by Live Objects portal:
+- Click on "Add" in "Data"/"Custom pipelines" menu
+- Add an "External transformation" and :
+ - Set URL with **<your Node-RED API URL that you received by mail>/transform**
+ - Set "HTTP Header key" to "Authorization"
+ - Encode in base-64 **<your login>:<your password>** (for instance using https://www.base64encode.org/).
+ - Set "HTTP Header value" with **Basic <the encoding value>**
 
 <img src="images/Image100.png" width="604" >
 
-The creation of the custom pipeline can be done by Live Objects portal, like above, but also by API : you can use Node-RED to create it (one shot call).
+<img src="images/image11.png" width="526" height="415">  
 
-<img src="images/image10.png" width="604" height="88">
-
-Initialization of the custom pipeline is described in the JSON of the "inject" node.
-
-The HTTP call of the Node-RED treatment will require an authentication. The basic key is issued from the base-64 coding of the chain <your_login>:<your_password> (for instance using https://www.base64encode.org/).
-
-<img src="images/image11.png" width="526" height="415">
-  
-For instance:
-
-```
-{
-    "enabled": true,
-    "name": "test pipeline",
-    "priorityLevel": 0,
-    "steps": [
-        {
-            "type": "externalTransformation",
-            "name": "appspot data enricher",
-            "url": "https://node-red-1-nodered-enabler-prod.eu-b.kmt.orange.com/node-red/api/5e8dc6b44311625edbefa554/transform",
-            "headers": {
-                "Authorization": [
-                    "Basic XXXXXXXXXXXXXXXXXXXXXXXX"
-                ]
-            }
-        }
-    ]
-}
-
-```
-
-Note that this URL may differs in your case. Use the one received in the welcome mail.
-
-Preparation of the call of Live Objects API to create the pipeline is done in "function" node:
+*Preparation of the call of Live Objects API to create the pipeline is done in "function" node*
 
 <img src="images/image12.png" width="451" height="323">
 
