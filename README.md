@@ -71,7 +71,7 @@ When saved, your node should appear connected :
 
 <img src="images/image9.png" width="206" height="62">
 
-You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own device API-KEY in Password field of Node-RED screen above):
+You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own device API-KEY in "Password" field of Node-RED screen above):
 
 ```
 [{"id":"d8f9c0f5.9e7fc8","type":"mqtt out","z":"12ea5f3e.fcefb9","name":"publish to dev/data","topic":"dev/data","qos":"0","retain":"","broker":"f06f3a34.82ea7","x":110,"y":80,"wires":[]},{"id":"f06f3a34.82ea7","type":"mqtt-broker","z":"","name":"Live Objects Device","broker":"liveobjects.orange-business.com","port":"8883","tls":"e7258cda.0b59a8","clientid":"urn:lo:nsid:mqttnodered:my_device","usetls":true,"compatmode":true,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"e7258cda.0b59a8","type":"tls-config","z":"","name":"","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"","servername":"","verifyservercert":false}]
