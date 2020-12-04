@@ -105,38 +105,23 @@ The creation of the custom pipeline can be done by Live Objects portal:
 
 <img src="images/image11.png" width="526" height="415">  
 
-*Preparation of the call of Live Objects API to create the pipeline is done in "function" node*
-
-<img src="images/image12.png" width="451" height="323">
-
-And then, you can call the API with "http request" node:
-
-<img src="images/image13.png" width="453" height="451">
-
-*Treatment to be called by custom pipeline*
+*Flow to be called by Live Objects custom pipeline feature*
 
 You can then define a flow that will be called when Live Objects receives messages, depending on the conditions you have set in the definition of your custom pipeline.
 
 In the example below, we use the treatment called by custom pipeline to add in the stream of data that will be stored by Live Objects, external temperature value, get from an Internet API.
 
-<img src="images/image14.png" width="604" height="137">
+<img src="images/image12.png" width="700">
 
 To fit with the definition of the custom pipeline done above, you first have to use a "http in" node, and name it accordingly (here "transform").
 
-<img src="images/image15.png" width="360" height="219">
+<img src="images/image15.png" width="360">
 
 Then you can add the temperature value (here converted from Kelvin to Degree) in the payload that will be returned to Live Objects by the "http response" node:
 
 <img src="images/image16.png" width="394" height="351">
 
-You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own API-KEYs):
-
-```
-[{"id":"91b958b6.9af578","type":"tab","label":"[e] Pipeline","disabled":false,"info":""},{"id":"eb2c2a85.5abf8","type":"http in","z":"91b958b6.9af578","name":"transform","url":"/transform","method":"post","upload":false,"swaggerDoc":"","x":100,"y":180,"wires":[["28317e7.4a6b082"]]},{"id":"afa96237.91ba2","type":"http response","z":"91b958b6.9af578","name":"","statusCode":"","headers":{},"x":650,"y":180,"wires":[]},{"id":"28317e7.4a6b082","type":"function","z":"91b958b6.9af578","name":"store initial msg","func":"msg.request = msg.payload;\nmsg.nom_arrondissement_communes = msg.payload.value.nom_arrondissement_communes;\n//msg.lat = msg.payload.location.lat;\n//msg.lon = msg.payload.location.lon;\nreturn msg;","outputs":1,"noerr":0,"x":180,"y":240,"wires":[["b96bc50a.fcd9d"]]},{"id":"55fabfa.e9ec64","type":"http request","z":"91b958b6.9af578","name":"","method":"use","ret":"txt","paytoqs":false,"url":"","tls":"","persist":false,"proxy":"","authType":"","x":410,"y":80,"wires":[["969f4c73.a2091"]]},{"id":"efd15f88.c548f8","type":"inject","z":"91b958b6.9af578","name":"","topic":"","payload":"{\"enabled\":true,\"name\":\"test pipeline\",\"priorityLevel\":0,\"steps\":[{\"type\":\"externalTransformation\",\"name\":\"appspot data enricher\",\"url\":\"https://node-red-1-nodered-enabler-prod.eu-b.kmt.orange.com/node-red/api/5e8dc6b44311625edbefa554/transform\",\"headers\":{\"Authorization\":[\"Basic ===APIKEY===\"]}}]}","payloadType":"json","repeat":"","crontab":"","once":false,"onceDelay":0.1,"x":110,"y":80,"wires":[["dbb55649.2d4a1"]]},{"id":"dbb55649.2d4a1","type":"function","z":"91b958b6.9af578","name":"set URL","func":"msg.headers = {};\nmsg.headers['Content-Type'] = 'application/json';\nmsg.headers['Accept'] = 'application/json';\nmsg.headers['X-API-KEY'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';\n\nmsg.method = \"POST\";\n\nmsg.url = \"https://liveobjects.orange-business.com/api/v0/pipelines\";\n\nreturn msg;","outputs":1,"noerr":0,"x":260,"y":80,"wires":[["55fabfa.e9ec64"]]},{"id":"969f4c73.a2091","type":"debug","z":"91b958b6.9af578","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":590,"y":80,"wires":[]},{"id":"ca3a29f4.b50708","type":"comment","z":"91b958b6.9af578","name":"Pipeline creation (on shot call)","info":"","x":160,"y":40,"wires":[]},{"id":"425ec7ff.ea76d8","type":"comment","z":"91b958b6.9af578","name":"Transformation called by the custom pipeline to enrich device data (here {{city}} T°)","info":"","x":330,"y":140,"wires":[]},{"id":"b96bc50a.fcd9d","type":"http request","z":"91b958b6.9af578","name":"","method":"GET","ret":"obj","paytoqs":false,"url":"http://api.openweathermap.org/data/2.5/weather?q={{nom_arrondissement_communes}},fr&appid=XXXXXXX","tls":"","persist":false,"proxy":"","authType":"","x":370,"y":240,"wires":[["d63aa8d5.e2319"]]},{"id":"d63aa8d5.e2319","type":"function","z":"91b958b6.9af578","name":"Add temperature","func":"msg.tmp = msg.payload;\nmsg.payload = msg.request;\n\nmsg.payload.value.temperature = msg.tmp.main.temp - 273.15;\n\nreturn msg;","outputs":1,"noerr":0,"x":550,"y":240,"wires":[["afa96237.91ba2"]]}]
-```
-
-Note that this URL may differs in your case. Use the one received in the welcome mail.
-
+See below for the source code of the 3 samples.
 
 ## Sample 3: event processing on data coming from Live Objects
 
