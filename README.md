@@ -52,7 +52,7 @@ When saved, your node should appear connected :
 You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own API-KEY API-KEY in Password field of Node-RED screen above):
 
 ```
-[{"id":"51e8b7e.dc73f48","type":"tab","label":"Flow 1","disabled":false,"info":""},{"id":"3313c1a9.1b0bee","type":"mqtt in","z":"51e8b7e.dc73f48","name":"","topic":"fifo/myFifo","qos":"2","datatype":"auto","broker":"f06f3a34.82ea7","x":100,"y":80,"wires":[[]]},{"id":"f06f3a34.82ea7","type":"mqtt-broker","z":"","name":"Live Objects","broker":"liveobjects.orange-business.com","port":"1883","clientid":"myapp_id","usetls":false,"compatmode":true,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""}]
+[{"id":"2ac0690f.f3f8f6","type":"mqtt in","z":"d1ebc1de.552d58","name":"","topic":"fifo/vantiqFifo","qos":"2","datatype":"auto","broker":"fee6051f.6515","x":220,"y":200,"wires":[[]]},{"id":"fee6051f.6515","type":"mqtt-broker","z":"","name":"Live Objects Device","broker":"liveobjects.orange-business.com","port":"8883","tls":"5b95170f.22b128","clientid":"myapp_id","usetls":true,"compatmode":true,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"5b95170f.22b128","type":"tls-config","z":"","name":"","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"","servername":"","verifyservercert":false}]
 ```
 
 ## Sending data to a Live Objects MQTT topic (device mode)
