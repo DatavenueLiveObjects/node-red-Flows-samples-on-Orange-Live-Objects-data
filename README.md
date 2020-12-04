@@ -10,24 +10,24 @@ Node-RED, the popular open source under Apache 2.0 license, has been integrated 
 
 See https://nodered.org/ to discover what Node-RED is.
 
-To be able to use Node-RED features, ask your vendor for the access. Then you will receive a mail with your account and the URL to use Node-RED option.
+To be able to use Node-RED features, ask your vendor for an access: you will receive a mail with your account and the URL to use Node-RED option.
 
-Using this account, you can login on the Node-RED SaaS page:
+Using this account, you can log-in the Node-RED SaaS page:
 
-<img src="images/image1.png" width="367" height="222">
+<img src="images/image1.png" width="350">
 
 When opening the editor, you will find 3 treatments (called **flows** in Node-RED vocabulary) samples in the "Default samples" tab:
 
-<img src="images/image1 bis.png" width="367">
+<img src="images/image1 bis.png" width="600">
 
-You can either follow this documentation, or the commentted flows to do your first steps using Node-RED in link with Live Objects:
+You can either use this documentation, or follow embedded comments to do your first steps using Node-RED in link with Live Objects:
 - *Getting data from a Live Objects MQTT topic (application mode)*, to base Node-RED treatment on data coming from Live Objects (through MQTT)
 - *Sending data to a Live Objects MQTT topic (device mode)*, to send data transformed by Node-RED to Live Objects (through MQTT)
 - *Sample 1: pushing to Live Objects data collected from a bike station*
 - *Sample 2: enriching data, using Live Objects custom pipeline feature*
 - *Sample 3: event processing on data coming from Live Objects*
 
-See also https://nodered.org/docs/ to learn more on how to use editor and build treatments.
+See also https://nodered.org/docs/ to learn more about Node-RED use.
 
 Note that in this SaaS implementation, Node-RED context is stored in database, to be persistent even in the case of a start/stop of the platform. Therefore, you have to use asynchronous mode (https://nodered.org/docs/user-guide/writing-functions#asynchronous-context-access) to access this context (here we used "change" nodes).
 
