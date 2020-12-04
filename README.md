@@ -59,13 +59,13 @@ You can start to create your Flow by importing (Ctrl-I) the following source (no
 
 In Node-RED editor, use an mqtt out node, and position it on an existing Live Objects FIFO:
 
-<img src="images/image6.png" width="604" height="201">
+<img src="images/image6.png" width="600">
 
 Edit the different property (connection and security) of your MQTT topic, giving the device ID which will appear in Live Objects (here urn:lo:nsid:mqttnodered:my_device):
 
-<img src="images/image7.png" width="445" height="344">
+<img src="images/image7.png" width="500">
 
-<img src="images/image8.png" width="456" height="235">
+<img src="images/image8.png" width="500">
 
 When saved, your node should appear connected :
 
@@ -74,7 +74,7 @@ When saved, your node should appear connected :
 You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own device API-KEY in "Password" field of Node-RED screen above):
 
 ```
-[{"id":"d8f9c0f5.9e7fc8","type":"mqtt out","z":"12ea5f3e.fcefb9","name":"publish to dev/data","topic":"dev/data","qos":"0","retain":"","broker":"f06f3a34.82ea7","x":110,"y":80,"wires":[]},{"id":"f06f3a34.82ea7","type":"mqtt-broker","z":"","name":"Live Objects Device","broker":"liveobjects.orange-business.com","port":"8883","tls":"e7258cda.0b59a8","clientid":"urn:lo:nsid:mqttnodered:my_device","usetls":true,"compatmode":true,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"e7258cda.0b59a8","type":"tls-config","z":"","name":"","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"","servername":"","verifyservercert":false}]
+[{"id":"d6ad7974.b19d5","type":"tab","label":"Flow 2","disabled":false,"info":""},{"id":"ddfc4322.32aec","type":"mqtt out","z":"d6ad7974.b19d5","name":"publish to dev/data","topic":"dev/data","qos":"0","retain":"","broker":"fee6051f.6515","x":170,"y":140,"wires":[]},{"id":"fee6051f.6515","type":"mqtt-broker","z":"","name":"Live Objects Device","broker":"liveobjects.orange-business.com","port":"1883","tls":"5b95170f.22b128","clientid":"urn:lo:nsid:mqttnodered:my_device","usetls":false,"compatmode":true,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"5b95170f.22b128","type":"tls-config","z":"","name":"","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"","servername":"","verifyservercert":false}]
 ```
 
 ## Calling by HTTP a Node-RED treatment, at custom pipeline level
