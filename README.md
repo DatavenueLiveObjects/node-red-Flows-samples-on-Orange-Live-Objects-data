@@ -35,15 +35,15 @@ Note that in this SaaS implementation, Node-RED context is stored in database, t
 
 In Node-RED editor, use an mqtt out node, and position it on an existing Live Objects FIFO:
 
-<img src="images/image2.png" width="471" height="325">
+<img src="images/image2.png" width="500">
 
 MQTT address and port are to be set:
 
-<img src="images/image3.png" width="459" height="313">
+<img src="images/image3.png" width="400">
 
 With your API-KEY, in "Application" profile in Live Objects:
 
-<img src="images/image4.png" width="421" height="213">
+<img src="images/image4.png" width="400">
 
 When saved, your node should appear connected :
 
@@ -52,7 +52,7 @@ When saved, your node should appear connected :
 You can start to create your Flow by importing (Ctrl-I) the following source (note that you will have to put your own API-KEY API-KEY in Password field of Node-RED screen above):
 
 ```
-[{"id":"2ac0690f.f3f8f6","type":"mqtt in","z":"d1ebc1de.552d58","name":"","topic":"fifo/vantiqFifo","qos":"2","datatype":"auto","broker":"fee6051f.6515","x":220,"y":200,"wires":[[]]},{"id":"fee6051f.6515","type":"mqtt-broker","z":"","name":"Live Objects Device","broker":"liveobjects.orange-business.com","port":"8883","tls":"5b95170f.22b128","clientid":"myapp_id","usetls":true,"compatmode":true,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"5b95170f.22b128","type":"tls-config","z":"","name":"","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"","servername":"","verifyservercert":false}]
+[{"id":"2ac0690f.f3f8f6","type":"mqtt in","z":"d1ebc1de.552d58","name":"","topic":"fifo/myFIFO","qos":"2","datatype":"auto","broker":"fee6051f.6515","x":110,"y":120,"wires":[[]]},{"id":"fee6051f.6515","type":"mqtt-broker","z":"","name":"Live Objects Application","broker":"liveobjects.orange-business.com","port":"1883","tls":"5b95170f.22b128","clientid":"myapp_id","usetls":false,"compatmode":true,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"5b95170f.22b128","type":"tls-config","z":"","name":"","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"","servername":"","verifyservercert":false}]
 ```
 
 ## Sending data to a Live Objects MQTT topic (device mode)
