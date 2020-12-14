@@ -6,6 +6,9 @@
 - [Data transformation using Live Objects and Node-RED](#data-transformation-using-live-objects-and-node-red)
 - [Getting data from a Live Objects Application mode MQTT topic](#getting-data-from-a-live-objects-application-mode-mqtt-topic)
 - [Sending data to a Live Objects Device mode MQTT topic](#sending-data-to-a-live-objects-device-mode-mqtt-topic)
+- [Sample 1: pushing to Live Objects data collected from a bike station](#sample-1:-pushing-to-live-objects-data-collected-from-a-bike-station)
+- [Sample 2: enriching data, using Live Objects custom pipeline feature](#sample-2:-enriching-data,-using-live-objects-custom-pipeline-feature)
+- [Sample 3: event processing on data coming from Live Objects](#sample-3:-event-processing-on-data-coming-from-live-objects)
 
 ## Presentation 
 
