@@ -4,7 +4,8 @@
 
 - [Presentation](#presentation)
 - [Data transformation using Live Objects and Node-RED](#data-transformation-using-live-objects-and-node-red)
-- [Getting data from a Live Objects MQTT topic (application mode)](#getting-data-from)
+- [Getting data from a Live Objects Application mode MQTT topic](#getting-data-from-a-live-objects-application-mode-mqtt-topic)
+- [Sending data to a Live Objects Device mode MQTT topic](#sending-data-to-a-live-objects-device-mode-mqtt-topic)
 
 ## Presentation 
 
@@ -37,7 +38,7 @@ See also https://nodered.org/docs/ to learn more about Node-RED use.
 
 Note that in this SaaS implementation, Node-RED context is stored in database, to be persistent even in the case of a start/stop of the platform. Therefore, you have to use asynchronous mode (https://nodered.org/docs/user-guide/writing-functions#asynchronous-context-access) to access this context (here we used "change" nodes).
 
-## Getting data from a Live Objects MQTT topic (application mode)
+## Getting data from a Live Objects Application mode MQTT topic
 
 In Node-RED editor, use an "mqtt out" node, and position it on an existing Live Objects FIFO:
 
@@ -61,7 +62,7 @@ You can start to create your Flow by importing (Ctrl-I) the following source (no
 [{"id":"2ac0690f.f3f8f6","type":"mqtt in","z":"d1ebc1de.552d58","name":"","topic":"fifo/myFIFO","qos":"2","datatype":"auto","broker":"fee6051f.6515","x":110,"y":120,"wires":[[]]},{"id":"fee6051f.6515","type":"mqtt-broker","z":"","name":"Live Objects Application","broker":"liveobjects.orange-business.com","port":"1883","tls":"5b95170f.22b128","clientid":"myapp_id","usetls":false,"compatmode":true,"keepalive":"30","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"5b95170f.22b128","type":"tls-config","z":"","name":"","cert":"","key":"","ca":"","certname":"","keyname":"","caname":"","servername":"","verifyservercert":false}]
 ```
 
-## Sending data to a Live Objects MQTT topic (device mode)
+## Sending data to a Live Objects Device mode MQTT topic
 
 In Node-RED editor, use an mqtt out node, and position it on an existing Live Objects FIFO:
 
