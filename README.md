@@ -1,18 +1,15 @@
 # node-red-orange-iot-samples 
 
+node-red-orange-iot-samples gives some explanations on default samples you will find while accessing Live Objects Node-RED option.
+
 ## Table of contents
 
-- [Presentation](#presentation)
 - [Data transformation using Live Objects and Node-RED](#data-transformation-using-live-objects-and-node-red)
 - [Getting data from a Live Objects Application mode MQTT topic](#getting-data-from-a-live-objects-application-mode-mqtt-topic)
 - [Sending data to a Live Objects Device mode MQTT topic](#sending-data-to-a-live-objects-device-mode-mqtt-topic)
 - [Sample 1: pushing to Live Objects data collected from a bike station](#sample-1-pushing-to-live-objects-data-collected-from-a-bike-station)
 - [Sample 2: enriching data, using Live Objects custom pipeline feature](#sample-2-enriching-data-using-live-objects-custom-pipeline-feature)
 - [Sample 3: event processing on data coming from Live Objects](#sample-3-event-processing-on-data-coming-from-live-objects)
-
-## Presentation 
-
-node-red-orange-iot-samples gives some explanations on default samples you will find while accessing Live Objects Node-RED option.
 
 ## Data transformation using Live Objects and Node-RED
 
@@ -26,20 +23,23 @@ Using this account, you can log-in the Node-RED SaaS page:
 
 <img src="images/image1.png" width="350">
 
+API login and password are to be used :
+- when you want to call by HTTP a Node-RED flow from outside of Node-RED,
+- when you want to log in a portal made with dashboard Node-RED nodes.
+
 When opening the editor, you will find 3 treatments (called **flows** in Node-RED vocabulary) samples in the "Default samples" tab:
 
 <img src="images/image1 bis.png" width="600">
 
-You can either use this documentation, or follow embedded comments to do your first steps using Node-RED in link with Live Objects:
-- *Getting data from a Live Objects MQTT topic (application mode)*, to base Node-RED treatment on data coming from Live Objects (through MQTT)
-- *Sending data to a Live Objects MQTT topic (device mode)*, to send data transformed by Node-RED to Live Objects (through MQTT)
-- *Sample 1: pushing to Live Objects data collected from a bike station*
-- *Sample 2: enriching data, using Live Objects custom pipeline feature*
-- *Sample 3: event processing on data coming from Live Objects*
-
 See also https://nodered.org/docs/ to learn more about Node-RED use.
 
 Note that in this SaaS implementation, Node-RED context is stored in database, to be persistent even in the case of a start/stop of the platform. Therefore, you have to use asynchronous mode (https://nodered.org/docs/user-guide/writing-functions#asynchronous-context-access) to access this context (here we used "change" nodes).
+
+## Node addition request
+
+You can contact support to request for node addition in the palette, especially coming from https://flows.nodered.org/. Orange will do a security check on this node, and if safe, will add them in the palette of every Node-RED user.
+
+Note that Orange garranties only Node-RED native nodes. Orange hotline supports you only on the use of these native nodes.
 
 ## Getting data from a Live Objects Application mode MQTT topic
 
